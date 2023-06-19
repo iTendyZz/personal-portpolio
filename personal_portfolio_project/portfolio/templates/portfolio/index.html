@@ -1,0 +1,30 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block head %}{% endblock head %}
+{% block title %}
+Main Page
+{% endblock title %}
+
+{% block content %}
+  <div id='main_page'>
+    <div class="row">
+      {% for work in works %}
+      <div class="col-4">
+        <div class="post">
+          <h3>{{work.title}}</h3>
+          {% if work.url %}
+          <a href='{{work.url}}'>
+            <div style="background-image: url('{{work.media.url}}');"></div>
+          </a>
+          {% else %}
+            <div style="background-image: url('{{work.media.url}}');"></div>
+          {% endif %}
+          <p>{{work.description|truncatechars:50}}</p>
+        </div>
+      </div>
+      
+      {% endfor %}
+    </div>
+    
+  </div>
+{% endblock content %}
